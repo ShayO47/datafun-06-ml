@@ -28,6 +28,26 @@ and apply the same approach to a dataset and question of your own choosing.
 
 For data suggestions, please see [data/raw/README.md](data/raw/README.md).
 
+## Initial Technical Modification
+
+I changed the test-data proportion from 20% to 30% in the linear
+regression workflow.
+
+I made this change to evaluate the model using a larger set of
+unseen penguin observations.
+
+I expected the prediction metrics to change because the model would
+train on fewer rows and be evaluated on more rows.
+
+After running the project with a 30% test set, the model trained on
+239 penguins and evaluated 103 unseen penguins. The baseline model
+had an RMSE of 750.30 g and an R-squared value of -0.016. The linear
+regression model using bill length had a lower RMSE of 591.33 g and
+an R-squared value of 0.369. This means bill length improved
+predictions compared with simply predicting the average body mass,
+but it explains only about 37% of the variation in body mass. Other
+features may improve the model.
+
 ## Standard Process
 
 ```text

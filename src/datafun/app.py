@@ -137,7 +137,9 @@ The modeling process will provide evidence.
 # CUSTOM: Decide how much data should be held back for testing.
 # The test data should NOT be used to train the model.
 
-TEST_FRACTION: Final[float] = 0.20
+# CUSTOM: I increased the test set from 20% to 30% so the model
+# is evaluated using a larger sample of unseen penguin observations.
+TEST_FRACTION: Final[float] = 0.30
 
 # CUSTOM: Choose whether the random split should be reproducible.
 # A fixed random seed makes the same split each time the script runs.
@@ -502,11 +504,13 @@ def main() -> None:
     LOG.info(r"""CUSTOM OBSERVATIONS:
     I used bill length to predict body mass.
 
-    The baseline RMSE was ...
-    The LinearRegression RMSE was ...
+    The baseline RMSE was 750.30 g.
+    The LinearRegression RMSE was 591.33 g.
 
-    Compared with the baseline,
-    the LinearRegression model ...
+    Compared with the baseline, the LinearRegression model reduced
+    the typical prediction error by about 159 g. The model explains
+    about 37% of the variation in body mass, so bill length is useful
+    but does not fully predict body mass by itself.
 
     The model R-squared was ...
 
