@@ -454,3 +454,801 @@ will help assess whether the model is useful.
 2026-10-04 00:38:28 | INFO | P06 | ===================================
 2026-10-04 00:38:28 | INFO | P06 | END main() - Executed successfully!
 2026-10-04 00:38:28 | INFO | P06 | ===================================
+2026-10-04 00:50:12 | INFO | P06 | === RUN START ===
+2026-10-04 00:50:12 | INFO | P06 | project=P06 - LINEAR REGRESSION
+2026-10-04 00:50:12 | INFO | P06 | repo_dir=datafun-06-ml
+2026-10-04 00:50:12 | INFO | P06 | python=3.14.7
+2026-10-04 00:50:12 | INFO | P06 | os=Windows 11
+2026-10-04 00:50:12 | INFO | P06 | shell=powershell
+2026-10-04 00:50:12 | INFO | P06 | cwd=.
+2026-10-04 00:50:12 | INFO | P06 | github_actions=False
+2026-10-04 00:50:12 | INFO | P06 | ===================================
+2026-10-04 00:50:12 | INFO | P06 | START main()
+2026-10-04 00:50:12 | INFO | P06 | ===================================
+2026-10-04 00:50:12 | INFO | P06 | -------------------------------
+2026-10-04 00:50:12 | INFO | P06 | 01. OBSERVE the data and prior findings.
+2026-10-04 00:50:12 | INFO | P06 | -------------------------------
+2026-10-04 00:50:12 | INFO | P06 | data file = data\raw\penguins.csv
+2026-10-04 00:50:12 | INFO | P06 | Data loaded successfully.
+2026-10-04 00:50:12 | INFO | P06 | Grain: one penguin
+2026-10-04 00:50:12 | INFO | P06 | Rows: 344
+2026-10-04 00:50:12 | INFO | P06 | Columns: 8
+2026-10-04 00:50:12 | INFO | P06 | Column names: ['species', 'island', 'bill_length_mm', 'bill_depth_mm', 'flipper_length_mm', 'body_mass_g', 'sex', 'year']
+2026-10-04 00:50:12 | INFO | P06 | -------------------------------
+2026-10-04 00:50:12 | INFO | P06 | 02. DECLARE the target and feature.
+2026-10-04 00:50:12 | INFO | P06 | -------------------------------
+2026-10-04 00:50:12 | INFO | P06 | Target:  body_mass_g
+2026-10-04 00:50:12 | INFO | P06 | Feature: bill_length_mm
+2026-10-04 00:50:12 | INFO | P06 | 
+I want to predict body mass.
+
+I selected bill length as the feature.
+
+A bigger penguin may have both a longer bill and more mass,
+so bill length might contain useful information
+for predicting body mass.
+
+I do not know yet how well bill length will predict body mass.
+The modeling process will provide evidence.
+
+2026-10-04 00:50:12 | INFO | P06 | -------------------------------
+2026-10-04 00:50:12 | INFO | P06 | 03. PREPARE the modeling data.
+2026-10-04 00:50:12 | INFO | P06 | -------------------------------
+2026-10-04 00:50:12 | INFO | P06 | Original rows: 344
+2026-10-04 00:50:12 | INFO | P06 | Modeling rows: 342
+2026-10-04 00:50:12 | INFO | P06 | Rows dropped: 2
+2026-10-04 00:50:12 | INFO | P06 | X shape: (342, 1)
+2026-10-04 00:50:12 | INFO | P06 | y shape: (342,)
+2026-10-04 00:50:12 | INFO | P06 | -------------------------------
+2026-10-04 00:50:12 | INFO | P06 | 04. SPLIT into training and test data.
+2026-10-04 00:50:12 | INFO | P06 | -------------------------------
+2026-10-04 00:50:12 | INFO | P06 | 
+I will use 80% of the modeling rows for training
+and hold back 20% for testing.
+
+I want most of the available data to be available
+for learning the model,
+while still keeping a separate set of observations
+that the model did not see during training.
+
+The test rows will be used later
+to evaluate how the trained model performs
+on unseen observations.
+
+I will use a random seed of 42.
+
+The specific value 42 is not analytically important.
+I use a fixed seed so the random split is reproducible.
+Running the project again will produce the same
+training and test observations,
+which makes results easier to reproduce and compare.
+
+2026-10-04 00:50:12 | INFO | P06 | Training rows: 239
+2026-10-04 00:50:12 | INFO | P06 | Test rows: 103
+2026-10-04 00:50:12 | INFO | P06 | -------------------------------
+2026-10-04 00:50:12 | INFO | P06 | 05. BASELINE with a simple reference model.
+2026-10-04 00:50:12 | INFO | P06 | -------------------------------
+2026-10-04 00:50:12 | INFO | P06 | 
+Before evaluating the LinearRegression model,
+I need a simple baseline for comparison.
+
+The baseline will ignore bill length
+and predict the average body mass
+from the training data for every test observation.
+
+A useful predictive model should improve
+on this simple reference prediction.
+
+2026-10-04 00:50:12 | INFO | P06 | Baseline strategy: mean
+2026-10-04 00:50:12 | INFO | P06 | Baseline RMSE: 750.30
+2026-10-04 00:50:12 | INFO | P06 | Baseline R-squared: -0.016
+2026-10-04 00:50:12 | INFO | P06 | -------------------------------
+2026-10-04 00:50:12 | INFO | P06 | 06. TRAIN a LinearRegression model.
+2026-10-04 00:50:12 | INFO | P06 | -------------------------------
+2026-10-04 00:50:12 | INFO | P06 | 
+I will use LinearRegression.
+
+Linear regression fits a straight-line relationship
+between the selected feature and target.
+
+This gives a simple and interpretable model
+that can be compared with the baseline.
+
+Fitting a line does not prove that a straight line
+is a good description of the relationship.
+
+The evaluation metrics and residual plot
+will help assess whether the model is useful.
+
+2026-10-04 00:50:12 | INFO | P06 | The model learned this line:
+2026-10-04 00:50:12 | INFO | P06 | body_mass_g = 88.959 * bill_length_mm + 317.829
+2026-10-04 00:50:12 | INFO | P06 | -------------------------------
+2026-10-04 00:50:12 | INFO | P06 | 07. PREDICT on X_test.
+2026-10-04 00:50:12 | INFO | P06 | -------------------------------
+2026-10-04 00:50:12 | INFO | P06 | Predictions created: 103
+2026-10-04 00:50:12 | INFO | P06 | -------------------------------
+2026-10-04 00:50:12 | INFO | P06 | 08. EVALUATE baseline vs model on y_test.
+2026-10-04 00:50:12 | INFO | P06 | -------------------------------
+2026-10-04 00:50:12 | INFO | P06 | BASELINE RESULTS
+2026-10-04 00:50:12 | INFO | P06 | RMSE:      750.30
+2026-10-04 00:50:12 | INFO | P06 | R-squared: -0.016
+2026-10-04 00:50:12 | INFO | P06 | LINEAR REGRESSION RESULTS
+2026-10-04 00:50:12 | INFO | P06 | RMSE:      591.33
+2026-10-04 00:50:12 | INFO | P06 | R-squared: 0.369
+2026-10-04 00:50:12 | INFO | P06 | -------------------------------
+2026-10-04 00:50:12 | INFO | P06 | 09. VISUALIZE predictions and residuals.
+2026-10-04 00:50:12 | INFO | P06 | -------------------------------
+2026-10-04 00:50:12 | INFO | P06 | Chart saved successfully at docs\images\regression-predictions.png.
+2026-10-04 00:50:12 | INFO | P06 | Chart saved successfully at docs\images\regression-residuals.png.
+2026-10-04 00:50:12 | INFO | P06 | -------------------------------
+2026-10-04 00:50:12 | INFO | P06 | 10. ASSESS the results.
+2026-10-04 00:50:12 | INFO | P06 | -------------------------------
+2026-10-04 00:50:12 | INFO | P06 | CUSTOM OBSERVATIONS:
+    I used bill length to predict body mass.
+
+    The baseline RMSE was 750.30 g.
+    The LinearRegression RMSE was 591.33 g.
+
+    Compared with the baseline, the LinearRegression model reduced
+    the typical prediction error by about 159 g. The model explains
+    about 37% of the variation in body mass, so bill length is useful
+    but does not fully predict body mass by itself.
+
+    The model R-squared was ...
+
+    In the residual plot, I observed ...
+
+    Based on this evidence,
+    I conclude ...
+
+    Next, I would like to try ...
+    
+2026-10-04 00:50:12 | INFO | P06 | In a script, call plt.show() at the end to display all charts.
+2026-10-04 00:50:12 | INFO | P06 | Close all chart windows (with the close button) to continue.
+2026-10-04 00:50:12 | INFO | P06 | ===================================
+2026-10-04 00:50:12 | INFO | P06 | END main() - Executed successfully!
+2026-10-04 00:50:12 | INFO | P06 | ===================================
+2026-10-04 01:10:11 | INFO | P06-CO2 | === RUN START ===
+2026-10-04 01:10:11 | INFO | P06-CO2 | project=P06 - LINEAR REGRESSION - CO2
+2026-10-04 01:10:11 | INFO | P06-CO2 | repo_dir=datafun-06-ml
+2026-10-04 01:10:11 | INFO | P06-CO2 | python=3.14.7
+2026-10-04 01:10:11 | INFO | P06-CO2 | os=Windows 11
+2026-10-04 01:10:11 | INFO | P06-CO2 | shell=powershell
+2026-10-04 01:10:11 | INFO | P06-CO2 | cwd=.
+2026-10-04 01:10:11 | INFO | P06-CO2 | github_actions=False
+2026-10-04 01:10:11 | INFO | P06-CO2 | ===================================
+2026-10-04 01:10:11 | INFO | P06-CO2 | START main()
+2026-10-04 01:10:11 | INFO | P06-CO2 | ===================================
+2026-10-04 01:10:11 | INFO | P06-CO2 | -------------------------------
+2026-10-04 01:10:11 | INFO | P06-CO2 | 01. OBSERVE the data and prior findings.
+2026-10-04 01:10:11 | INFO | P06-CO2 | -------------------------------
+2026-10-04 01:10:11 | INFO | P06-CO2 | data file = data\raw\owid-co2-data-subset.csv
+2026-10-04 01:10:11 | INFO | P06-CO2 | Created derived column: gdp_per_capita = gdp / population.
+2026-10-04 01:10:11 | INFO | P06-CO2 | Data loaded successfully.
+2026-10-04 01:10:11 | INFO | P06-CO2 | Grain: one country or entity in one year
+2026-10-04 01:10:11 | INFO | P06-CO2 | Rows: 350
+2026-10-04 01:10:11 | INFO | P06-CO2 | Columns: 15
+2026-10-04 01:10:11 | INFO | P06-CO2 | Column names: ['country', 'year', 'population', 'gdp', 'co2', 'co2_per_capita', 'coal_co2', 'oil_co2', 'gas_co2', 'cement_co2', 'methane', 'nitrous_oxide', 'total_ghg', 'temperature_change_from_co2', 'gdp_per_capita']
+2026-10-04 01:10:11 | INFO | P06-CO2 | -------------------------------
+2026-10-04 01:10:11 | INFO | P06-CO2 | 02. DECLARE the target and feature.
+2026-10-04 01:10:11 | INFO | P06-CO2 | -------------------------------
+2026-10-04 01:10:11 | INFO | P06-CO2 | Target:  co2_per_capita
+2026-10-04 01:10:11 | INFO | P06-CO2 | Feature: gdp_per_capita
+2026-10-04 01:10:11 | INFO | P06-CO2 | 
+I want to predict annual CO2 emissions per person.
+
+I selected GDP per person as the feature.
+
+Countries with higher economic activity per person may use more
+energy, transportation, manufacturing, and consumer goods.
+Those activities can produce CO2 emissions.
+
+Using per-person values helps compare observations without total
+population size dominating the relationship.
+
+I do not know yet how well GDP per person will predict CO2 emissions
+per person. The modeling process will provide evidence.
+
+2026-10-04 01:10:11 | INFO | P06-CO2 | -------------------------------
+2026-10-04 01:10:11 | INFO | P06-CO2 | 03. PREPARE the modeling data.
+2026-10-04 01:10:11 | INFO | P06-CO2 | -------------------------------
+2026-10-04 01:10:11 | INFO | P06-CO2 | Original rows: 350
+2026-10-04 01:10:11 | INFO | P06-CO2 | Modeling rows: 308
+2026-10-04 01:10:11 | INFO | P06-CO2 | Rows dropped: 42
+2026-10-04 01:10:11 | INFO | P06-CO2 | X shape: (308, 1)
+2026-10-04 01:10:11 | INFO | P06-CO2 | y shape: (308,)
+2026-10-04 01:10:11 | INFO | P06-CO2 | -------------------------------
+2026-10-04 01:10:11 | INFO | P06-CO2 | 04. SPLIT into training and test data.
+2026-10-04 01:10:11 | INFO | P06-CO2 | -------------------------------
+2026-10-04 01:10:11 | INFO | P06-CO2 | 
+I will use 80% of the modeling rows for training
+and hold back 20% for testing.
+
+I want most of the available data to be available
+for learning the model,
+while still keeping a separate set of observations
+that the model did not see during training.
+
+The test rows will be used later
+to evaluate how the trained model performs
+on unseen observations.
+
+I will use a random seed of 42.
+
+The specific value 42 is not analytically important.
+I use a fixed seed so the random split is reproducible.
+Running the project again will produce the same
+training and test observations,
+which makes results easier to reproduce and compare.
+
+2026-10-04 01:10:11 | INFO | P06-CO2 | Training rows: 246
+2026-10-04 01:10:11 | INFO | P06-CO2 | Test rows: 62
+2026-10-04 01:10:11 | INFO | P06-CO2 | -------------------------------
+2026-10-04 01:10:11 | INFO | P06-CO2 | 05. BASELINE with a simple reference model.
+2026-10-04 01:10:11 | INFO | P06-CO2 | -------------------------------
+2026-10-04 01:10:11 | INFO | P06-CO2 | 
+Before evaluating the LinearRegression model,
+I need a simple baseline for comparison.
+
+The baseline will ignore GDP per person
+and predict the average CO2 emissions per person
+from the training data for every test observation.
+
+A useful predictive model should improve
+on this simple reference prediction.
+
+2026-10-04 01:10:11 | INFO | P06-CO2 | Baseline strategy: mean
+2026-10-04 01:10:11 | INFO | P06-CO2 | Baseline RMSE: 5.61
+2026-10-04 01:10:11 | INFO | P06-CO2 | Baseline R-squared: -0.009
+2026-10-04 01:10:11 | INFO | P06-CO2 | -------------------------------
+2026-10-04 01:10:11 | INFO | P06-CO2 | 06. TRAIN a LinearRegression model.
+2026-10-04 01:10:11 | INFO | P06-CO2 | -------------------------------
+2026-10-04 01:10:11 | INFO | P06-CO2 | 
+I will use LinearRegression.
+
+Linear regression fits a straight-line relationship
+between the selected feature and target.
+
+This gives a simple and interpretable model
+that can be compared with the baseline.
+
+Fitting a line does not prove that a straight line
+is a good description of the relationship.
+
+The evaluation metrics and residual plot
+will help assess whether the model is useful.
+
+2026-10-04 01:10:11 | INFO | P06-CO2 | The model learned this line:
+2026-10-04 01:10:11 | INFO | P06-CO2 | co2_per_capita = 0.000299484 * gdp_per_capita + 0.365104
+2026-10-04 01:10:11 | INFO | P06-CO2 | -------------------------------
+2026-10-04 01:10:11 | INFO | P06-CO2 | 07. PREDICT on X_test.
+2026-10-04 01:10:11 | INFO | P06-CO2 | -------------------------------
+2026-10-04 01:10:11 | INFO | P06-CO2 | Predictions created: 62
+2026-10-04 01:10:11 | INFO | P06-CO2 | -------------------------------
+2026-10-04 01:10:11 | INFO | P06-CO2 | 08. EVALUATE baseline vs model on y_test.
+2026-10-04 01:10:11 | INFO | P06-CO2 | -------------------------------
+2026-10-04 01:10:11 | INFO | P06-CO2 | BASELINE RESULTS
+2026-10-04 01:10:11 | INFO | P06-CO2 | RMSE:      5.61
+2026-10-04 01:10:11 | INFO | P06-CO2 | R-squared: -0.009
+2026-10-04 01:10:11 | INFO | P06-CO2 | LINEAR REGRESSION RESULTS
+2026-10-04 01:10:11 | INFO | P06-CO2 | RMSE:      3.09
+2026-10-04 01:10:11 | INFO | P06-CO2 | R-squared: 0.693
+2026-10-04 01:10:11 | INFO | P06-CO2 | -------------------------------
+2026-10-04 01:10:11 | INFO | P06-CO2 | 09. VISUALIZE predictions and residuals.
+2026-10-04 01:10:11 | INFO | P06-CO2 | -------------------------------
+2026-10-04 01:10:12 | INFO | P06-CO2 | Chart saved successfully at docs\images\co2-per-capita-regression-predictions.png.
+2026-10-04 01:10:12 | INFO | P06-CO2 | Chart saved successfully at docs\images\co2-per-capita-regression-residuals.png.
+2026-10-04 01:10:12 | INFO | P06-CO2 | -------------------------------
+2026-10-04 01:10:12 | INFO | P06-CO2 | 10. ASSESS the results.
+2026-10-04 01:10:12 | INFO | P06-CO2 | -------------------------------
+2026-10-04 01:10:12 | INFO | P06-CO2 | CUSTOM OBSERVATIONS:
+    I used GDP to predict CO2 emissions.
+
+    The baseline RMSE was ...
+    The LinearRegression RMSE was ...
+
+    Compared with the baseline,
+    the LinearRegression model ...
+
+    The model R-squared was ...
+
+    In the residual plot, I observed ...
+
+    Based on this evidence,
+    I conclude ...
+
+    Next, I would like to try ...
+    
+2026-10-04 01:10:12 | INFO | P06-CO2 | In a script, call plt.show() at the end to display all charts.
+2026-10-04 01:10:12 | INFO | P06-CO2 | Close all chart windows (with the close button) to continue.
+2026-10-04 01:10:34 | INFO | P06-CO2 | ===================================
+2026-10-04 01:10:34 | INFO | P06-CO2 | END main() - Executed successfully!
+2026-10-04 01:10:34 | INFO | P06-CO2 | ===================================
+2026-10-04 01:14:06 | INFO | P06-CO2 | === RUN START ===
+2026-10-04 01:14:06 | INFO | P06-CO2 | project=P06 - LINEAR REGRESSION - CO2
+2026-10-04 01:14:06 | INFO | P06-CO2 | repo_dir=datafun-06-ml
+2026-10-04 01:14:06 | INFO | P06-CO2 | python=3.14.7
+2026-10-04 01:14:06 | INFO | P06-CO2 | os=Windows 11
+2026-10-04 01:14:06 | INFO | P06-CO2 | shell=powershell
+2026-10-04 01:14:06 | INFO | P06-CO2 | cwd=.
+2026-10-04 01:14:06 | INFO | P06-CO2 | github_actions=False
+2026-10-04 01:14:06 | INFO | P06-CO2 | ===================================
+2026-10-04 01:14:06 | INFO | P06-CO2 | START main()
+2026-10-04 01:14:06 | INFO | P06-CO2 | ===================================
+2026-10-04 01:14:06 | INFO | P06-CO2 | -------------------------------
+2026-10-04 01:14:06 | INFO | P06-CO2 | 01. OBSERVE the data and prior findings.
+2026-10-04 01:14:06 | INFO | P06-CO2 | -------------------------------
+2026-10-04 01:14:06 | INFO | P06-CO2 | data file = data\raw\owid-co2-data-subset.csv
+2026-10-04 01:14:06 | INFO | P06-CO2 | Created derived column: gdp_per_capita = gdp / population.
+2026-10-04 01:14:06 | INFO | P06-CO2 | Data loaded successfully.
+2026-10-04 01:14:06 | INFO | P06-CO2 | Grain: one country or entity in one year
+2026-10-04 01:14:06 | INFO | P06-CO2 | Rows: 350
+2026-10-04 01:14:06 | INFO | P06-CO2 | Columns: 15
+2026-10-04 01:14:06 | INFO | P06-CO2 | Column names: ['country', 'year', 'population', 'gdp', 'co2', 'co2_per_capita', 'coal_co2', 'oil_co2', 'gas_co2', 'cement_co2', 'methane', 'nitrous_oxide', 'total_ghg', 'temperature_change_from_co2', 'gdp_per_capita']
+2026-10-04 01:14:06 | INFO | P06-CO2 | -------------------------------
+2026-10-04 01:14:06 | INFO | P06-CO2 | 02. DECLARE the target and feature.
+2026-10-04 01:14:06 | INFO | P06-CO2 | -------------------------------
+2026-10-04 01:14:06 | INFO | P06-CO2 | Target:  co2_per_capita
+2026-10-04 01:14:06 | INFO | P06-CO2 | Feature: gdp_per_capita
+2026-10-04 01:14:06 | INFO | P06-CO2 | 
+I want to predict annual CO2 emissions per person.
+
+I selected GDP per person as the feature.
+
+Countries with higher economic activity per person may use more
+energy, transportation, manufacturing, and consumer goods.
+Those activities can produce CO2 emissions.
+
+Using per-person values helps compare observations without total
+population size dominating the relationship.
+
+I do not know yet how well GDP per person will predict CO2 emissions
+per person. The modeling process will provide evidence.
+
+2026-10-04 01:14:06 | INFO | P06-CO2 | -------------------------------
+2026-10-04 01:14:06 | INFO | P06-CO2 | 03. PREPARE the modeling data.
+2026-10-04 01:14:06 | INFO | P06-CO2 | -------------------------------
+2026-10-04 01:14:06 | INFO | P06-CO2 | Original rows: 350
+2026-10-04 01:14:06 | INFO | P06-CO2 | Modeling rows: 308
+2026-10-04 01:14:06 | INFO | P06-CO2 | Rows dropped: 42
+2026-10-04 01:14:06 | INFO | P06-CO2 | X shape: (308, 1)
+2026-10-04 01:14:06 | INFO | P06-CO2 | y shape: (308,)
+2026-10-04 01:14:06 | INFO | P06-CO2 | -------------------------------
+2026-10-04 01:14:06 | INFO | P06-CO2 | 04. SPLIT into training and test data.
+2026-10-04 01:14:06 | INFO | P06-CO2 | -------------------------------
+2026-10-04 01:14:06 | INFO | P06-CO2 | 
+I will use 80% of the modeling rows for training
+and hold back 20% for testing.
+
+I want most of the available data to be available
+for learning the model,
+while still keeping a separate set of observations
+that the model did not see during training.
+
+The test rows will be used later
+to evaluate how the trained model performs
+on unseen observations.
+
+I will use a random seed of 42.
+
+The specific value 42 is not analytically important.
+I use a fixed seed so the random split is reproducible.
+Running the project again will produce the same
+training and test observations,
+which makes results easier to reproduce and compare.
+
+2026-10-04 01:14:06 | INFO | P06-CO2 | Training rows: 246
+2026-10-04 01:14:06 | INFO | P06-CO2 | Test rows: 62
+2026-10-04 01:14:06 | INFO | P06-CO2 | -------------------------------
+2026-10-04 01:14:06 | INFO | P06-CO2 | 05. BASELINE with a simple reference model.
+2026-10-04 01:14:06 | INFO | P06-CO2 | -------------------------------
+2026-10-04 01:14:06 | INFO | P06-CO2 | 
+Before evaluating the LinearRegression model,
+I need a simple baseline for comparison.
+
+The baseline will ignore GDP per person
+and predict the average CO2 emissions per person
+from the training data for every test observation.
+
+A useful predictive model should improve
+on this simple reference prediction.
+
+2026-10-04 01:14:06 | INFO | P06-CO2 | Baseline strategy: mean
+2026-10-04 01:14:06 | INFO | P06-CO2 | Baseline RMSE: 5.61
+2026-10-04 01:14:06 | INFO | P06-CO2 | Baseline R-squared: -0.009
+2026-10-04 01:14:06 | INFO | P06-CO2 | -------------------------------
+2026-10-04 01:14:06 | INFO | P06-CO2 | 06. TRAIN a LinearRegression model.
+2026-10-04 01:14:06 | INFO | P06-CO2 | -------------------------------
+2026-10-04 01:14:06 | INFO | P06-CO2 | 
+I will use LinearRegression.
+
+Linear regression fits a straight-line relationship
+between the selected feature and target.
+
+This gives a simple and interpretable model
+that can be compared with the baseline.
+
+Fitting a line does not prove that a straight line
+is a good description of the relationship.
+
+The evaluation metrics and residual plot
+will help assess whether the model is useful.
+
+2026-10-04 01:14:06 | INFO | P06-CO2 | The model learned this line:
+2026-10-04 01:14:06 | INFO | P06-CO2 | co2_per_capita = 0.000299484 * gdp_per_capita + 0.365104
+2026-10-04 01:14:06 | INFO | P06-CO2 | -------------------------------
+2026-10-04 01:14:06 | INFO | P06-CO2 | 07. PREDICT on X_test.
+2026-10-04 01:14:06 | INFO | P06-CO2 | -------------------------------
+2026-10-04 01:14:06 | INFO | P06-CO2 | Predictions created: 62
+2026-10-04 01:14:06 | INFO | P06-CO2 | -------------------------------
+2026-10-04 01:14:06 | INFO | P06-CO2 | 08. EVALUATE baseline vs model on y_test.
+2026-10-04 01:14:06 | INFO | P06-CO2 | -------------------------------
+2026-10-04 01:14:06 | INFO | P06-CO2 | BASELINE RESULTS
+2026-10-04 01:14:06 | INFO | P06-CO2 | RMSE:      5.61
+2026-10-04 01:14:06 | INFO | P06-CO2 | R-squared: -0.009
+2026-10-04 01:14:06 | INFO | P06-CO2 | LINEAR REGRESSION RESULTS
+2026-10-04 01:14:06 | INFO | P06-CO2 | RMSE:      3.09
+2026-10-04 01:14:06 | INFO | P06-CO2 | R-squared: 0.693
+2026-10-04 01:14:06 | INFO | P06-CO2 | -------------------------------
+2026-10-04 01:14:06 | INFO | P06-CO2 | 09. VISUALIZE predictions and residuals.
+2026-10-04 01:14:06 | INFO | P06-CO2 | -------------------------------
+2026-10-04 01:14:07 | INFO | P06-CO2 | Chart saved successfully at docs\images\co2-per-capita-regression-predictions.png.
+2026-10-04 01:14:07 | INFO | P06-CO2 | Chart saved successfully at docs\images\co2-per-capita-regression-residuals.png.
+2026-10-04 01:14:07 | INFO | P06-CO2 | -------------------------------
+2026-10-04 01:14:07 | INFO | P06-CO2 | 10. ASSESS the results.
+2026-10-04 01:14:07 | INFO | P06-CO2 | -------------------------------
+2026-10-04 01:14:07 | INFO | P06-CO2 | CUSTOM OBSERVATIONS:
+    I used GDP per person to predict annual CO2 emissions per person.
+
+    I created a new gdp_per_capita feature by dividing GDP by population.
+    This allowed me to compare economic activity and emissions without
+    total population size dominating the analysis.
+
+    The baseline RMSE was 5.61.
+    The LinearRegression RMSE was 3.09.
+
+    Compared with the baseline, the LinearRegression model reduced
+    the typical prediction error by 2.52, or about 45%.
+
+    The model R-squared was 0.693, meaning GDP per person accounted
+    for about 69% of the variation in CO2 emissions per person in
+    the held-out test observations.
+
+    In the residual plot, I observed that residuals were generally
+    centered around zero, but their spread was larger at higher GDP
+    per-person values. Some predictions still had relatively large errors.
+
+    Based on this evidence, I conclude that GDP per person is a useful
+    predictor of CO2 emissions per person for this dataset, but it does
+    not fully explain emissions and should not be interpreted as proving
+    that GDP causes CO2 emissions.
+
+    Next, I would like to investigate whether energy-source variables,
+    such as coal, oil, or gas CO2, improve prediction accuracy.
+
+2026-10-04 01:14:07 | INFO | P06-CO2 | In a script, call plt.show() at the end to display all charts.
+2026-10-04 01:14:07 | INFO | P06-CO2 | Close all chart windows (with the close button) to continue.
+2026-10-04 01:14:11 | INFO | P06-CO2 | ===================================
+2026-10-04 01:14:11 | INFO | P06-CO2 | END main() - Executed successfully!
+2026-10-04 01:14:11 | INFO | P06-CO2 | ===================================
+2026-10-04 01:36:50 | INFO | P06-CO2 | === RUN START ===
+2026-10-04 01:36:50 | INFO | P06-CO2 | project=P06 - LINEAR REGRESSION - CO2
+2026-10-04 01:36:50 | INFO | P06-CO2 | repo_dir=datafun-06-ml
+2026-10-04 01:36:50 | INFO | P06-CO2 | python=3.14.7
+2026-10-04 01:36:50 | INFO | P06-CO2 | os=Windows 11
+2026-10-04 01:36:50 | INFO | P06-CO2 | shell=powershell
+2026-10-04 01:36:50 | INFO | P06-CO2 | cwd=.
+2026-10-04 01:36:50 | INFO | P06-CO2 | github_actions=False
+2026-10-04 01:36:50 | INFO | P06-CO2 | ===================================
+2026-10-04 01:36:50 | INFO | P06-CO2 | START main()
+2026-10-04 01:36:50 | INFO | P06-CO2 | ===================================
+2026-10-04 01:36:50 | INFO | P06-CO2 | -------------------------------
+2026-10-04 01:36:50 | INFO | P06-CO2 | 01. OBSERVE the data and prior findings.
+2026-10-04 01:36:50 | INFO | P06-CO2 | -------------------------------
+2026-10-04 01:36:50 | INFO | P06-CO2 | data file = data\raw\owid-co2-data-subset.csv
+2026-10-04 01:36:50 | INFO | P06-CO2 | Created derived column: gdp_per_capita = gdp / population.
+2026-10-04 01:36:50 | INFO | P06-CO2 | Data loaded successfully.
+2026-10-04 01:36:50 | INFO | P06-CO2 | Grain: one country or entity in one year
+2026-10-04 01:36:50 | INFO | P06-CO2 | Rows: 350
+2026-10-04 01:36:50 | INFO | P06-CO2 | Columns: 15
+2026-10-04 01:36:50 | INFO | P06-CO2 | Column names: ['country', 'year', 'population', 'gdp', 'co2', 'co2_per_capita', 'coal_co2', 'oil_co2', 'gas_co2', 'cement_co2', 'methane', 'nitrous_oxide', 'total_ghg', 'temperature_change_from_co2', 'gdp_per_capita']
+2026-10-04 01:36:50 | INFO | P06-CO2 | -------------------------------
+2026-10-04 01:36:50 | INFO | P06-CO2 | 02. DECLARE the target and feature.
+2026-10-04 01:36:50 | INFO | P06-CO2 | -------------------------------
+2026-10-04 01:36:50 | INFO | P06-CO2 | Target:  co2_per_capita
+2026-10-04 01:36:50 | INFO | P06-CO2 | Feature: gdp_per_capita
+2026-10-04 01:36:50 | INFO | P06-CO2 | 
+I want to predict annual CO2 emissions per person.
+
+I selected GDP per person as the feature.
+
+Countries with higher economic activity per person may use more
+energy, transportation, manufacturing, and consumer goods.
+Those activities can produce CO2 emissions.
+
+Using per-person values helps compare observations without total
+population size dominating the relationship.
+
+I do not know yet how well GDP per person will predict CO2 emissions
+per person. The modeling process will provide evidence.
+
+2026-10-04 01:36:50 | INFO | P06-CO2 | -------------------------------
+2026-10-04 01:36:50 | INFO | P06-CO2 | 03. PREPARE the modeling data.
+2026-10-04 01:36:50 | INFO | P06-CO2 | -------------------------------
+2026-10-04 01:36:50 | INFO | P06-CO2 | Original rows: 350
+2026-10-04 01:36:50 | INFO | P06-CO2 | Modeling rows: 308
+2026-10-04 01:36:50 | INFO | P06-CO2 | Rows dropped: 42
+2026-10-04 01:36:50 | INFO | P06-CO2 | X shape: (308, 1)
+2026-10-04 01:36:50 | INFO | P06-CO2 | y shape: (308,)
+2026-10-04 01:36:50 | INFO | P06-CO2 | -------------------------------
+2026-10-04 01:36:50 | INFO | P06-CO2 | 04. SPLIT into training and test data.
+2026-10-04 01:36:50 | INFO | P06-CO2 | -------------------------------
+2026-10-04 01:36:50 | INFO | P06-CO2 | 
+I will use 80% of the modeling rows for training
+and hold back 20% for testing.
+
+I want most of the available data to be available
+for learning the model,
+while still keeping a separate set of observations
+that the model did not see during training.
+
+The test rows will be used later
+to evaluate how the trained model performs
+on unseen observations.
+
+I will use a random seed of 42.
+
+The specific value 42 is not analytically important.
+I use a fixed seed so the random split is reproducible.
+Running the project again will produce the same
+training and test observations,
+which makes results easier to reproduce and compare.
+
+2026-10-04 01:36:50 | INFO | P06-CO2 | Training rows: 246
+2026-10-04 01:36:50 | INFO | P06-CO2 | Test rows: 62
+2026-10-04 01:36:50 | INFO | P06-CO2 | -------------------------------
+2026-10-04 01:36:50 | INFO | P06-CO2 | 05. BASELINE with a simple reference model.
+2026-10-04 01:36:50 | INFO | P06-CO2 | -------------------------------
+2026-10-04 01:36:50 | INFO | P06-CO2 | 
+Before evaluating the LinearRegression model,
+I need a simple baseline for comparison.
+
+The baseline will ignore GDP per person
+and predict the average CO2 emissions per person
+from the training data for every test observation.
+
+A useful predictive model should improve
+on this simple reference prediction.
+
+2026-10-04 01:36:50 | INFO | P06-CO2 | Baseline strategy: mean
+2026-10-04 01:36:50 | INFO | P06-CO2 | Baseline RMSE: 5.61
+2026-10-04 01:36:50 | INFO | P06-CO2 | Baseline R-squared: -0.009
+2026-10-04 01:36:50 | INFO | P06-CO2 | -------------------------------
+2026-10-04 01:36:50 | INFO | P06-CO2 | 06. TRAIN a LinearRegression model.
+2026-10-04 01:36:50 | INFO | P06-CO2 | -------------------------------
+2026-10-04 01:36:50 | INFO | P06-CO2 | 
+I will use LinearRegression.
+
+Linear regression fits a straight-line relationship
+between the selected feature and target.
+
+This gives a simple and interpretable model
+that can be compared with the baseline.
+
+Fitting a line does not prove that a straight line
+is a good description of the relationship.
+
+The evaluation metrics and residual plot
+will help assess whether the model is useful.
+
+2026-10-04 01:36:50 | INFO | P06-CO2 | The model learned this line:
+2026-10-04 01:36:50 | INFO | P06-CO2 | co2_per_capita = 0.000299484 * gdp_per_capita + 0.365104
+2026-10-04 01:36:50 | INFO | P06-CO2 | -------------------------------
+2026-10-04 01:36:50 | INFO | P06-CO2 | 07. PREDICT on X_test.
+2026-10-04 01:36:50 | INFO | P06-CO2 | -------------------------------
+2026-10-04 01:36:50 | INFO | P06-CO2 | Predictions created: 62
+2026-10-04 01:36:50 | INFO | P06-CO2 | -------------------------------
+2026-10-04 01:36:50 | INFO | P06-CO2 | 08. EVALUATE baseline vs model on y_test.
+2026-10-04 01:36:50 | INFO | P06-CO2 | -------------------------------
+2026-10-04 01:36:50 | INFO | P06-CO2 | BASELINE RESULTS
+2026-10-04 01:36:50 | INFO | P06-CO2 | RMSE:      5.61
+2026-10-04 01:36:50 | INFO | P06-CO2 | R-squared: -0.009
+2026-10-04 01:36:50 | INFO | P06-CO2 | LINEAR REGRESSION RESULTS
+2026-10-04 01:36:50 | INFO | P06-CO2 | RMSE:      3.09
+2026-10-04 01:36:50 | INFO | P06-CO2 | R-squared: 0.693
+2026-10-04 01:36:50 | INFO | P06-CO2 | -------------------------------
+2026-10-04 01:36:50 | INFO | P06-CO2 | 09. VISUALIZE predictions and residuals.
+2026-10-04 01:36:50 | INFO | P06-CO2 | -------------------------------
+2026-10-04 01:36:51 | INFO | P06-CO2 | Chart saved successfully at docs\images\co2-per-capita-regression-predictions.png.
+2026-10-04 01:36:51 | INFO | P06-CO2 | Chart saved successfully at docs\images\co2-per-capita-regression-residuals.png.
+2026-10-04 01:36:51 | INFO | P06-CO2 | -------------------------------
+2026-10-04 01:36:51 | INFO | P06-CO2 | 10. ASSESS the results.
+2026-10-04 01:36:51 | INFO | P06-CO2 | -------------------------------
+2026-10-04 01:36:51 | INFO | P06-CO2 | CUSTOM OBSERVATIONS:
+    I used GDP per person to predict annual CO2 emissions per person.
+
+    I created a new gdp_per_capita feature by dividing GDP by population.
+    This allowed me to compare economic activity and emissions without
+    total population size dominating the analysis.
+
+    The baseline RMSE was 5.61.
+    The LinearRegression RMSE was 3.09.
+
+    Compared with the baseline, the LinearRegression model reduced
+    the typical prediction error by 2.52, or about 45%.
+
+    The model R-squared was 0.693, meaning GDP per person accounted
+    for about 69% of the variation in CO2 emissions per person in
+    the held-out test observations.
+
+    In the residual plot, I observed that residuals were generally
+    centered around zero, but their spread was larger at higher GDP
+    per-person values. Some predictions still had relatively large errors.
+
+    Based on this evidence, I conclude that GDP per person is a useful
+    predictor of CO2 emissions per person for this dataset, but it does
+    not fully explain emissions and should not be interpreted as proving
+    that GDP causes CO2 emissions.
+
+    Next, I would like to investigate whether energy-source variables,
+    such as coal, oil, or gas CO2, improve prediction accuracy.
+
+2026-10-04 01:36:51 | INFO | P06-CO2 | In a script, call plt.show() at the end to display all charts.
+2026-10-04 01:36:51 | INFO | P06-CO2 | Close all chart windows (with the close button) to continue.
+2026-10-04 01:36:55 | INFO | P06-CO2 | ===================================
+2026-10-04 01:36:55 | INFO | P06-CO2 | END main() - Executed successfully!
+2026-10-04 01:36:55 | INFO | P06-CO2 | ===================================
+2026-10-04 01:37:17 | INFO | P06 | === RUN START ===
+2026-10-04 01:37:17 | INFO | P06 | project=P06 - LINEAR REGRESSION
+2026-10-04 01:37:17 | INFO | P06 | repo_dir=datafun-06-ml
+2026-10-04 01:37:17 | INFO | P06 | python=3.14.7
+2026-10-04 01:37:17 | INFO | P06 | os=Windows 11
+2026-10-04 01:37:17 | INFO | P06 | shell=powershell
+2026-10-04 01:37:17 | INFO | P06 | cwd=.
+2026-10-04 01:37:17 | INFO | P06 | github_actions=False
+2026-10-04 01:37:17 | INFO | P06 | ===================================
+2026-10-04 01:37:17 | INFO | P06 | START main()
+2026-10-04 01:37:17 | INFO | P06 | ===================================
+2026-10-04 01:37:17 | INFO | P06 | -------------------------------
+2026-10-04 01:37:17 | INFO | P06 | 01. OBSERVE the data and prior findings.
+2026-10-04 01:37:17 | INFO | P06 | -------------------------------
+2026-10-04 01:37:17 | INFO | P06 | data file = data\raw\penguins.csv
+2026-10-04 01:37:17 | INFO | P06 | Data loaded successfully.
+2026-10-04 01:37:17 | INFO | P06 | Grain: one penguin
+2026-10-04 01:37:17 | INFO | P06 | Rows: 344
+2026-10-04 01:37:17 | INFO | P06 | Columns: 8
+2026-10-04 01:37:17 | INFO | P06 | Column names: ['species', 'island', 'bill_length_mm', 'bill_depth_mm', 'flipper_length_mm', 'body_mass_g', 'sex', 'year']
+2026-10-04 01:37:17 | INFO | P06 | -------------------------------
+2026-10-04 01:37:17 | INFO | P06 | 02. DECLARE the target and feature.
+2026-10-04 01:37:17 | INFO | P06 | -------------------------------
+2026-10-04 01:37:17 | INFO | P06 | Target:  body_mass_g
+2026-10-04 01:37:17 | INFO | P06 | Feature: bill_length_mm
+2026-10-04 01:37:17 | INFO | P06 | 
+I want to predict body mass.
+
+I selected bill length as the feature.
+
+A bigger penguin may have both a longer bill and more mass,
+so bill length might contain useful information
+for predicting body mass.
+
+I do not know yet how well bill length will predict body mass.
+The modeling process will provide evidence.
+
+2026-10-04 01:37:17 | INFO | P06 | -------------------------------
+2026-10-04 01:37:17 | INFO | P06 | 03. PREPARE the modeling data.
+2026-10-04 01:37:17 | INFO | P06 | -------------------------------
+2026-10-04 01:37:17 | INFO | P06 | Original rows: 344
+2026-10-04 01:37:17 | INFO | P06 | Modeling rows: 342
+2026-10-04 01:37:17 | INFO | P06 | Rows dropped: 2
+2026-10-04 01:37:17 | INFO | P06 | X shape: (342, 1)
+2026-10-04 01:37:17 | INFO | P06 | y shape: (342,)
+2026-10-04 01:37:17 | INFO | P06 | -------------------------------
+2026-10-04 01:37:17 | INFO | P06 | 04. SPLIT into training and test data.
+2026-10-04 01:37:17 | INFO | P06 | -------------------------------
+2026-10-04 01:37:17 | INFO | P06 | 
+I will use 80% of the modeling rows for training
+and hold back 20% for testing.
+
+I want most of the available data to be available
+for learning the model,
+while still keeping a separate set of observations
+that the model did not see during training.
+
+The test rows will be used later
+to evaluate how the trained model performs
+on unseen observations.
+
+I will use a random seed of 42.
+
+The specific value 42 is not analytically important.
+I use a fixed seed so the random split is reproducible.
+Running the project again will produce the same
+training and test observations,
+which makes results easier to reproduce and compare.
+
+2026-10-04 01:37:17 | INFO | P06 | Training rows: 239
+2026-10-04 01:37:17 | INFO | P06 | Test rows: 103
+2026-10-04 01:37:17 | INFO | P06 | -------------------------------
+2026-10-04 01:37:17 | INFO | P06 | 05. BASELINE with a simple reference model.
+2026-10-04 01:37:17 | INFO | P06 | -------------------------------
+2026-10-04 01:37:17 | INFO | P06 | 
+Before evaluating the LinearRegression model,
+I need a simple baseline for comparison.
+
+The baseline will ignore bill length
+and predict the average body mass
+from the training data for every test observation.
+
+A useful predictive model should improve
+on this simple reference prediction.
+
+2026-10-04 01:37:17 | INFO | P06 | Baseline strategy: mean
+2026-10-04 01:37:17 | INFO | P06 | Baseline RMSE: 750.30
+2026-10-04 01:37:17 | INFO | P06 | Baseline R-squared: -0.016
+2026-10-04 01:37:17 | INFO | P06 | -------------------------------
+2026-10-04 01:37:17 | INFO | P06 | 06. TRAIN a LinearRegression model.
+2026-10-04 01:37:17 | INFO | P06 | -------------------------------
+2026-10-04 01:37:17 | INFO | P06 | 
+I will use LinearRegression.
+
+Linear regression fits a straight-line relationship
+between the selected feature and target.
+
+This gives a simple and interpretable model
+that can be compared with the baseline.
+
+Fitting a line does not prove that a straight line
+is a good description of the relationship.
+
+The evaluation metrics and residual plot
+will help assess whether the model is useful.
+
+2026-10-04 01:37:17 | INFO | P06 | The model learned this line:
+2026-10-04 01:37:17 | INFO | P06 | body_mass_g = 88.959 * bill_length_mm + 317.829
+2026-10-04 01:37:17 | INFO | P06 | -------------------------------
+2026-10-04 01:37:17 | INFO | P06 | 07. PREDICT on X_test.
+2026-10-04 01:37:17 | INFO | P06 | -------------------------------
+2026-10-04 01:37:17 | INFO | P06 | Predictions created: 103
+2026-10-04 01:37:17 | INFO | P06 | -------------------------------
+2026-10-04 01:37:17 | INFO | P06 | 08. EVALUATE baseline vs model on y_test.
+2026-10-04 01:37:17 | INFO | P06 | -------------------------------
+2026-10-04 01:37:17 | INFO | P06 | BASELINE RESULTS
+2026-10-04 01:37:17 | INFO | P06 | RMSE:      750.30
+2026-10-04 01:37:17 | INFO | P06 | R-squared: -0.016
+2026-10-04 01:37:17 | INFO | P06 | LINEAR REGRESSION RESULTS
+2026-10-04 01:37:17 | INFO | P06 | RMSE:      591.33
+2026-10-04 01:37:17 | INFO | P06 | R-squared: 0.369
+2026-10-04 01:37:17 | INFO | P06 | -------------------------------
+2026-10-04 01:37:17 | INFO | P06 | 09. VISUALIZE predictions and residuals.
+2026-10-04 01:37:17 | INFO | P06 | -------------------------------
+2026-10-04 01:37:17 | INFO | P06 | Chart saved successfully at docs\images\regression-predictions.png.
+2026-10-04 01:37:17 | INFO | P06 | Chart saved successfully at docs\images\regression-residuals.png.
+2026-10-04 01:37:17 | INFO | P06 | -------------------------------
+2026-10-04 01:37:17 | INFO | P06 | 10. ASSESS the results.
+2026-10-04 01:37:17 | INFO | P06 | -------------------------------
+2026-10-04 01:37:17 | INFO | P06 | CUSTOM OBSERVATIONS:
+    I used bill length to predict body mass.
+
+    The baseline RMSE was 750.30 g.
+    The LinearRegression RMSE was 591.33 g.
+
+    Compared with the baseline, the LinearRegression model reduced
+    the typical prediction error by about 159 g. The model explains
+    about 37% of the variation in body mass, so bill length is useful
+    but does not fully predict body mass by itself.
+
+    The model R-squared was ...
+
+    In the residual plot, I observed ...
+
+    Based on this evidence,
+    I conclude ...
+
+    Next, I would like to try ...
+    
+2026-10-04 01:37:17 | INFO | P06 | In a script, call plt.show() at the end to display all charts.
+2026-10-04 01:37:17 | INFO | P06 | Close all chart windows (with the close button) to continue.
+2026-10-04 01:37:17 | INFO | P06 | ===================================
+2026-10-04 01:37:17 | INFO | P06 | END main() - Executed successfully!
+2026-10-04 01:37:17 | INFO | P06 | ===================================

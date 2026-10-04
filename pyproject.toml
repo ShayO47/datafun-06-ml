@@ -22,14 +22,12 @@ requires-python = ">=3.14"
 version = "0.1.0"
 
 dependencies = [
-    # REQ.DEPS: External packages used by the project code.
-    "composable-data-core", # shared decision grammar for analytics projects
-    "datafun-toolkit", # logging
-    "ml-vizkit", # visualization toolkit for machine learning
-    "pandas",    # tabular data manipulation
-    "scikit-learn", # machine learning library for regression and more
-    "seaborn",   # statistical data visualization built on matplotlib
-    "matplotlib" # plotting library for static, animated, and interactive visualizations in Python
+    "datafun-toolkit", # logging helpers
+    "matplotlib",      # charts
+    "ml-vizkit",       # saves charts
+    "numpy",           # numerical calculations and missing-value handling
+    "pandas",          # tabular data preparation
+    "scikit-learn",    # baseline and linear regression models
 ]
 
 [project.urls]

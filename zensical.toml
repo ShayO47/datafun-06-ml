@@ -9,11 +9,11 @@
 # WHY: Centralizes project documentation configuration.
 
 [project]
-site_name = "Shalynne Orth's Predictive Analytics Project"
+site_name = "CO2 Per Capita Prediction Explorer"
 site_url = "https://ShayO47.github.io/datafun-06-ml/"
 repo_url = "https://github.com/ShayO47/datafun-06-ml"
 repo_name = "datafun-06-ml"
-site_description = "A predictive analytics project using Python and linear regression."
+site_description = "A linear regression analysis of GDP per capita and CO2 emissions per capita."
 docs_dir = "docs" # source directory for documentation markdown files
 site_dir = "site" # output directory for generated site (ignored by Git; not in repo)
 edit_uri = "edit/main/docs/" # "Edit this page" links (GitHub)
