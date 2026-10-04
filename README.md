@@ -1,6 +1,5 @@
 # datafun-06-ml
 
-[![Workflow Guide](https://img.shields.io/badge/Pro--Guide-pro--analytics--02-green)](https://denisecase.github.io/pro-analytics-02/workflow-b-apply-example-project/)
 [![Python 3.14](https://img.shields.io/badge/python-3.14%2B-blue?logo=python)](./pyproject.toml)
 [![uv managed](https://img.shields.io/badge/uv-managed-DE5FE9)](https://docs.astral.sh/uv/)
 [![ty type checked](https://img.shields.io/badge/ty-type_checked-2F80ED)](https://docs.astral.sh/ty/)
@@ -62,9 +61,8 @@ EVALUATE    baseline vs model on y_test
 
 ## Common Workflow
 
-Follow the
-[step-by-step workflow guide](https://denisecase.github.io/pro-analytics-02/workflow-b-apply-example-project/)
-carefully.
+Use the project instructions in `docs/project-instructions.md` to set up,
+run, test, and document the project.
 
 ## Success
 
@@ -103,8 +101,7 @@ code .
 ### In a VS Code terminal
 
 These are listed for convenience.
-For best results, follow the detailed instructions in
-[pro-analytics-02 guide](https://denisecase.github.io/pro-analytics-02/).
+For best results, follow the project instructions in `docs/project-instructions.md`.
 
 Use VS Code menu option `Terminal` / `New Terminal` to open a **VS Code terminal**
 in the root project folder.
@@ -160,9 +157,7 @@ git push -u origin main
 
 - You do not need to add to or modify `tests/`.
   Tests are recommended and provided for example only.
-- Many files are silent helpers.
-  [Explore](https://denisecase.github.io/professional-python-project-explainer/)
-  as you like, but most files are never touched.
+- Many files are silent helpers. Explore as you like, but most files are never touched.
 - You do NOT need to understand everything;
   let understanding build over time.
 
