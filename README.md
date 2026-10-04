@@ -1,32 +1,68 @@
-# datafun-06-ml
+# CO2 Per Capita Prediction Explorer
 
 [![Python 3.14](https://img.shields.io/badge/python-3.14%2B-blue?logo=python)](./pyproject.toml)
 [![uv managed](https://img.shields.io/badge/uv-managed-DE5FE9)](https://docs.astral.sh/uv/)
 [![ty type checked](https://img.shields.io/badge/ty-type_checked-2F80ED)](https://docs.astral.sh/ty/)
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://docs.astral.sh/ruff/)
-[![Jupyter](https://img.shields.io/badge/Jupyter-notebook-F37626?logo=jupyter&logoColor=white)](https://jupyter.org/)
-[![marimo](https://img.shields.io/badge/marimo-reactive_notebook-FF6B6B)](https://docs.marimo.io/)
 [![Zensical docs](https://img.shields.io/badge/Zensical-docs-purple)](https://zensical.org/)
 [![MIT](https://img.shields.io/badge/license-see%20LICENSE-yellow.svg)](./LICENSE)
 
-> Shalynne Orth's professional Python project:
-> linear regression and predictive analytics.
+> Shalynne Orth's predictive analytics project using Python and linear
+> regression to explore GDP per capita and CO₂ emissions per capita.
 
-## Project Goal
+## Project Overview
 
-This project introduces **linear regression**, the process of
-fitting a model to data and using it to make predictions.
+This project uses Python and linear regression to investigate the question:
 
-Think about two variables that might be related:
+How well does GDP per person predict annual CO₂ emissions per person?
 
-- Does study time predict exam scores?
-- Does temperature predict energy usage?
-- Does advertising spend predict revenue?
+I used a subset of the Our World in Data CO₂ dataset. To compare
+observations without total population size dominating the analysis,
+I created a gdp_per_capita feature by dividing GDP by population.
 
-Your goal: run the example, read the code,
-and apply the same approach to a dataset and question of your own choosing.
+The project prepares the data, splits it into training and test sets,
+compares a linear regression model with a baseline, evaluates
+prediction quality, and creates prediction and residual charts.
 
-For data suggestions, please see [data/raw/README.md](data/raw/README.md).
+## Key Results
+
+Model RMSE R-squared
+Baseline 5.61 -0.009
+Linear regression 3.09 0.693
+
+The linear regression model reduced typical prediction error by about 45%
+compared with the baseline. GDP per person explained about 69% of the
+variation in CO₂ emissions per person in the held-out test observations.
+
+The relationship is useful for prediction, but it does not prove that GDP
+causes emissions. The residual plot shows larger errors at higher
+GDP-per-capita values, suggesting that energy sources, industrial
+activity, and policy could improve a future model.
+
+## Visualization
+
+![Actual and predicted CO₂ emissions per capita](docs/images/co2-per-capita-regression-predictions.png)
+
+![Residuals for the GDP-per-capita model](docs/images/co2-per-capita-regression-residuals.png)
+
+## Run This Project
+
+From the project root folder, run:
+
+```powershell
+uv sync
+uv run python -m datafun.co2_per_capita_model
+```
+
+Close the chart windows after reviewing them. The project saves chart
+images in docs/images/ and records the analysis in project.log.
+
+## Project Files
+
+- `src/datafun/co2_per_capita_model.py` — custom linear regression analysis
+- `data/raw/owid-co2-data-subset.csv` — source data
+- `docs/` — project narrative, data card, and charts
+- [Project documentation](https://ShayO47.github.io/datafun-06-ml/)
 
 ## Initial Technical Modification
 
@@ -74,7 +110,7 @@ EVALUATE    baseline vs model on y_test
 ## Important Folders and Files
 
 - **data/raw** - raw data
-- **docs/** - project narrative and documentation\
+- **docs** - project narrative and documentation\
 - **src/datafun** - supporting Python code
 - **pyproject.toml** - project configuration
 - **zensical.toml** - documentation configuration
@@ -86,10 +122,8 @@ run, test, and document the project.
 
 ## Success
 
-After completing Phase 1. **Start & Run**, you'll have the example project,
-running on your machine.
-A new file `project.log` will appear in the root project folder
-and running the example script will print out:
+A successful run of the custom analysis creates `project.log`, saves
+prediction and residual charts in `docs/images/`, and prints:
 
 ```shell
 ===================================
@@ -145,8 +179,8 @@ uv run pre-commit run --all-files
 git add -A
 uv run pre-commit run --all-files
 
-# run the penguin example: is there a linear relationship?
-uv run python -m datafun.app
+# run the custom GDP-per-capita and CO2-per-capita analysis
+uv run python -m datafun.co2_per_capita_model
 
 # do chores
 uv run ruff format .
@@ -207,7 +241,7 @@ Press `Ctrl c` (both keys together) or `Ctrl+Z` then `Enter` on Windows.
 
 ## Data Card
 
-- [Palmer Penguins Data Card](./docs/data-card.md)
+- [CO2 Data Card](./docs/data-card.md)
 
 ## Annotations
 
